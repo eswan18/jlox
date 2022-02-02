@@ -1,6 +1,19 @@
-Lox.class: Lox.java
-	javac Lox.java
-run: Lox.class
-	java Lox
+BUILD_DIR := build
+
+DIR := java
+PACKAGE := lox
+SOURCES := $(wildcard $(DIR)/com/craftinginterpreters/$(PACKAGE)/*.java)
+CLASSES := $(addprefix $(BUILD_DIR)/, $(SOURCES:.java=.class))
+	
+JAVA_OPTIONS := -Werror
+
+default: $(CLASSES)
+	printf $(SOURCES)
+
+$(BUILD_DIR)/$(DIR)/%.class: $(DIR)/%.java
+	mkdir -p $(BUILD_DIR)/$(DIR)
+	javac -cp $(DIR) -d $(BUILD_DIR)/$(DIR) $(JAVA_OPTIONS) -implicit:none $<
+	@ printf "%8s %-60s %s\n" javac $< "$(JAVA_OPTIONS)"
+
 clean:
 	rm -rf *.class

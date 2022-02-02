@@ -8,7 +8,7 @@ CLASSES := $(addprefix $(BUILD_DIR)/, $(SOURCES:.java=.class))
 JAVA_OPTIONS := -Werror
 
 default: $(CLASSES)
-	printf $(SOURCES)
+	@:
 
 $(BUILD_DIR)/$(DIR)/%.class: $(DIR)/%.java
 	mkdir -p $(BUILD_DIR)/$(DIR)
@@ -16,4 +16,4 @@ $(BUILD_DIR)/$(DIR)/%.class: $(DIR)/%.java
 	@ printf "%8s %-60s %s\n" javac $< "$(JAVA_OPTIONS)"
 
 clean:
-	rm -rf *.class
+	rm -rf build/

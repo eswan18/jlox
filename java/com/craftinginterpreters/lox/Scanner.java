@@ -81,7 +81,7 @@ class Scanner {
                     // A comment goes until the end of the line.
                     while (peek() != '\n' && !isAtEnd()) advance();
                 } else {
-                    addtoken(SLASH);
+                    addToken(SLASH);
                 }
                 break;
             // Whitespace (ignore).
@@ -121,10 +121,10 @@ class Scanner {
         // Look for decimal bit.
         if (peek() == '.' && isDigit(peekNext())) {
             // Just consume the '.' and look for more digits.
-            advance;
+            advance();
             while (isDigit(peek())) advance();
         }
-        addToken(NUMBER, Double.parseDouble(source.substring(start, current));
+        addToken(NUMBER, Double.parseDouble(source.substring(start, current)));
     }
 
     private void string() {

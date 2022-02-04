@@ -15,5 +15,8 @@ $(BUILD_DIR)/$(DIR)/%.class: $(DIR)/%.java
 	javac -cp $(DIR) -d $(BUILD_DIR)/$(DIR) $(JAVA_OPTIONS) -implicit:none $<
 	@ printf "%8s %-60s %s\n" javac $< "$(JAVA_OPTIONS)"
 
+ast:
+	java ./java/com/craftinginterpreters/tool/GenerateAst.java ./java/com/craftinginterpreters/lox/
+
 clean:
 	rm -rf build/
